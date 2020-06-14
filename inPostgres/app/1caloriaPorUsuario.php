@@ -11,7 +11,7 @@
             GROUP BY u.idusuario
     
             ";
-            $result = $database->select($sql);
+            $result = $connectionDataBase->select($sql);
             //var_dump($result[0]);
         }
     ?>

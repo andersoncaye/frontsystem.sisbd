@@ -27,12 +27,12 @@
     <body>
         <div class="container">
 
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/?sql" role="button">HOME</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/?sql=1" role="button">Saldo calórico diário médio do usuário</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/?sql=2" role="button">Média de proteínas ingeridas diariamente do usuário</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/?sql=3" role="button">Alimentos cadastrados que estão sendo utilizados</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/?sql=4" role="button">Usuário de determinado estado que NÃO consome determinado alimento</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/?sql=7" role="button">Usando Index</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inPostgres/?sql" role="button">HOME</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inPostgres/?sql=1" role="button">Saldo calórico diário médio do usuário</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inPostgres/?sql=2" role="button">Média de proteínas ingeridas diariamente do usuário</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inPostgres/?sql=3" role="button">Alimentos cadastrados que estão sendo utilizados</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inPostgres/?sql=4" role="button">Usuário de determinado estado que NÃO consome determinado alimento</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inPostgres/?sql=7" role="button">Usando Index</a>
 
             <?php
                 if (isset($_GET['sql'])) {

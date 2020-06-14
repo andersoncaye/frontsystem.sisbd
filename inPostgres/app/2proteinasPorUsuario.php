@@ -10,7 +10,7 @@
             WHERE u.nome = '$search' AND u.idusuario = rd.idusuario AND ca.idresumodia = rd.idresumodia
             AND ca.idalimento = a.idalimento
             ";
-            $result = $database->select($sql);
+            $result = $connectionDataBase->select($sql);
             echo "<br>";
             //var_dump($result[0]);
         }
