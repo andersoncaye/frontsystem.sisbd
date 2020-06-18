@@ -20,14 +20,14 @@ class Database
         }
 	}
 
-	public function select($collection, $typeResearch, $command)
+	public function select($collection, $typeResearch, $command, array $options = [])
 	{
 	    $documents = null;
         $selectCollection = $this->database->selectCollection($collection);
         if ($typeResearch == 'find'){
 
         } else if ($typeResearch == 'aggregate') {
-            $documents = $selectCollection->aggregate($command); //váriavel usada na posição : $pipeline
+            $documents = $selectCollection->aggregate($command, $options); //váriavel usada na posição : $pipeline
         }
         return $documents;
 	}

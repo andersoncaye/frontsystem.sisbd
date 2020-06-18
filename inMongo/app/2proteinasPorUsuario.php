@@ -4,7 +4,7 @@
             $inicio = microtime(true);
 
             $search = (int)$_POST['search'];
-            $command = array(array('$match'=> array('$and'=> array(array('idusuario'=> $search)))), array('$lookup'=> array('from'=> 'resumo_dia', 'localField'=> 'idusuario', 'foreignField'=> 'idusuario', 'as'=> 'resumo_dia')), array('$lookup'=> array('from'=> 'consumo_alimento', 'localField'=> 'resumo_dia.idresumodia', 'foreignField'=> 'idresumodia', 'as'=> 'consumo_alimento')), array('$lookup'=> array('from'=> 'alimento', 'localField'=> 'consumo_alimento.idalimento', 'foreignField'=> 'idalimento', 'as'=> 'alimento')), array('$project'=> array('nome'=> 1, 'data_nascimento'=> 1, 'altura_cm'=> 1, 'media'=> array('$avg'=> array('$multiply'=> array(array('$sum'=> array('$map'=> array('input'=> '$alimento.proteinas_por_porcao', 'as'=> 'p', 'in'=> array('$add'=> array('$cond'=> array('if'=> '$$p.excluded', 'then'=> 0, 'else'=> 1)))))), array('$sum'=> array('$consumo_alimento.numero_porcoes'))))))));
+            $command = array(array('$match'=> array('$and'=> array(array('idusuario'=> 1234)))), array('$lookup'=> array('from'=> 'resumo_dia', 'localField'=> 'idusuario', 'foreignField'=> 'idusuario', 'as'=> 'resumo_dia')), array('$lookup'=> array('from'=> 'consumo_alimento', 'localField'=> 'resumo_dia.idresumodia', 'foreignField'=> 'idresumodia', 'as'=> 'consumo_alimento')), array('$lookup'=> array('from'=> 'alimento', 'localField'=> 'consumo_alimento.idalimento', 'foreignField'=> 'idalimento', 'as'=> 'alimento')), array('$project'=> array( 'media'=> array('$avg'=> array('$multiply'=> array(array('$sum'=> array('$map'=> array('input'=> '$alimento.proteinas_por_porcao', 'as'=> 'p', 'in'=> array('$add'=> array('$cond'=> array('if'=> '$$p.excluded', 'then'=> 0, 'else'=> 1)))))), array('$sum'=> array('$consumo_alimento.numero_porcoes'))))))));
             $result = $connectionDataBase->select('usuario', Database::$typeResearch_AGGREGATE ,$command);
             $y = 0;
             $documents = array();
@@ -12,7 +12,7 @@
                 $documents[$y] = $document;
                 $y++;
             }
-            var_dump($documents);
+            //var_dump($documents);
         }
     ?>
     <br><br><h1 class="">Média de proteínas ingeridas diariamente do usuário</h1><br><br>

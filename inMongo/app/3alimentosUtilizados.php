@@ -4,23 +4,17 @@
             $inicio = microtime(true);
 
             //$search = $_POST['search'];
-            $sql = "
-            SELECT a.nome_alimento, a.carboidratos_por_porcao, a.proteinas_por_porcao,
-            a.gorduras_por_porcao, a.kcal_por_porcao
-            FROM alimento a
-            WHERE a.idalimento IN (
-            SELECT
-            ca.idalimento
-            FROM
-            consumo_alimento ca
-            GROUP BY ca.idalimento
-            )
-            ORDER BY a.kcal_por_porcao
-
-            ";
-            $result = $connectionDataBase->select($sql);
+            $command    = array(array('$lookup'=> array('from'=> 'consumo_alimento', 'localField'=> 'idalimento', 'foreignField'=> 'idalimento', 'as'=> 'consumo_alimento')), array('$sort'=> array('kcal_por_porcao '=> 1)), array('$project'=> array('nome_alimento'=> 1, 'carboidratos_por_porcao'=> 1, 'proteinas_por_porcao'=> 1, 'gorduras_por_porcao'=> 1, 'kcal_por_porcao'=> 1)));
+            $option     = array("allowDiskUse" => true);
+            $result     = $connectionDataBase->select('alimento', Database::$typeResearch_AGGREGATE ,$command, $option);
+            $y          = 0;
+            $documents  = array();
+            foreach ( $result as $document) {
+                $documents[$y] = $document;
+                $y++;
+            }
             echo "<br>";
-            //var_dump($result[2]);
+            //var_dump($documents);
         //}
     ?>
     <br><br><h1 class="">Alimentos cadastrados que estão sendo utilizados em pelo menos uma dieta</h1><br><br>
@@ -49,10 +43,11 @@
         echo "<br><br><h2>Nada foi encontrado, desculpe!</h2>";
     } else {*/
         $total = microtime(true) - $inicio;
+        $jsonCommand = json_encode($command).'\n\n'.json_encode($option);
         echo "<br>
             <div class=\"alert alert-success\" role=\"alert\">
                 <h4 class=\"alert-heading\">SQL executado</h4>
-                <p>$sql</p>
+                <p>$jsonCommand</p>
                 <hr>
                 <p class=\"mb-0\">Tempo de execução: $total segundos</p>
             </div>
@@ -72,7 +67,7 @@
         <tbody>
         <?php
         $i = 0;
-        foreach ($result as $res){
+        foreach ($documents as $res){
             $i++;
         ?>
         <tr>
