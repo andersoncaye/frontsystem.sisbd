@@ -4,11 +4,12 @@
             $inicio = microtime(true);
 
             //$search = $_POST['search'];
-            $command    = array(array('$lookup'=> array('from'=> 'consumo_alimento', 'localField'=> 'idalimento', 'foreignField'=> 'idalimento', 'as'=> 'consumo_alimento')), array('$sort'=> array('kcal_por_porcao '=> 1)), array('$project'=> array('nome_alimento'=> 1, 'carboidratos_por_porcao'=> 1, 'proteinas_por_porcao'=> 1, 'gorduras_por_porcao'=> 1, 'kcal_por_porcao'=> 1)));
-            $option     = array("allowDiskUse" => true);
-            $result     = $connectionDataBase->select('alimento', Database::$typeResearch_AGGREGATE ,$command, $option);
+            $command    = array(array('$lookup'=> array('from'=> 'consumo_alimento', 'localField'=> 'idalimento', 'foreignField'=> 'idalimento', 'as'=> 'consumo_alimento')), array('$project'=> array('nome_alimento'=> 1, 'carboidratos_por_porcao'=> 1, 'proteinas_por_porcao'=> 1, 'gorduras_por_porcao'=> 1, 'kcal_por_porcao'=> 1)));
+            //$option     = array("allowDiskUse" => true);
+            $result     = $connectionDataBase->select('alimento', Database::$typeResearch_AGGREGATE ,$command);
             $y          = 0;
             $documents  = array();
+            var_dump($result);
             foreach ( $result as $document) {
                 $documents[$y] = $document;
                 $y++;

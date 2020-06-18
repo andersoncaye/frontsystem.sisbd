@@ -26,12 +26,13 @@
         <div class="container">
 
             <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql" role="button">HOME</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=1" role="button">Saldo calórico diário médio do usuário</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=2" role="button">Média de proteínas ingeridas diariamente do usuário</a>
-            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=3" role="button">Alimentos cadastrados que estão sendo utilizados</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=1" role="button">QUESTÃO 1</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=2" role="button">QUESTÃO 2</a>
+            <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=3" role="button">QUESTÃO 3</a>
+            <!--
             <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=4" role="button">Usuário de determinado estado que NÃO consome determinado alimento</a>
             <a class="btn btn-primary mt-1" href="http://localhost/frontsystem.sisbd/inMongo/?sql=7" role="button">Usando Index</a>
-
+            -->
             <?php
                 if (isset($_GET['sql'])) {
                     if ($_GET['sql'] == 1){
